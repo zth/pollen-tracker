@@ -1,0 +1,14 @@
+{
+  "extends": ["config:base"],
+  "automerge": true,
+  "ignoreDeps": [
+    "babel-plugin-relay",
+    "relay-compiler",
+    "relay-config",
+    "relay-runtime",
+    "react",
+    "react-dom",
+    "react-relay",
+    "@types/node"
+  ]
+}

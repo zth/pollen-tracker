@@ -1,0 +1,16 @@
+node_modules
+*.log
+.cache
+.next
+coverage
+dist
+.DS_Store
+.merlin
+/lib/*
+!/lib/js/*
+/bundledOutputs/
+.bsb.lock
+.graphql_ppx_cache
+
+# Env
+.env.build

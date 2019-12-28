@@ -1,0 +1,44 @@
+directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE
+
+type Agent {
+  id: ID!
+  name: String!
+  jobTitle: String!
+  description: String!
+  profileImageUrl: String!
+  email: String!
+  mobile: String!
+  brandingColor: String!
+  logoUrl: String!
+}
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+type Contact {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  mobile: String!
+  email: String!
+  address: String!
+}
+
+type Query {
+  vendorFollowUp(token: ID!): VendorFollowUp
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type VendorFollowUp {
+  id: ID!
+  title: String!
+  subtitle: String!
+  imageUrl: String!
+  agent: Agent!
+  contact: Contact!
+}
+

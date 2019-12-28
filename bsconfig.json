@@ -1,0 +1,29 @@
+{
+  "name": "pollen-tracker",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "bs-dependencies": [
+    "reason-react",
+    "re-classnames",
+    "@dblechoc/reason-relay",
+    "nextdotbs",
+    "bs-fetch"
+  ],
+  "reason": { "react-jsx": 3 },
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bsc-flags": ["-bs-super-errors"],
+  "ppx-flags": ["@dblechoc/reason-relay/ppx"],
+  "refmt": 3,
+  "warnings": {
+    "number": "+A-48-102",
+    "error": "+A-3-44-102"
+  }
+}

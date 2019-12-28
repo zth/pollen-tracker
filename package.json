@@ -1,0 +1,109 @@
+{
+  "name": "pollen-tracker",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  },
+  "scripts": {
+    "postinstall": "cd ./node_modules/bs-uchar && yarn && yarn clean && yarn prepare",
+    "clean": "rimraf .next && bsb -clean-world",
+    "dev": "run-p dev:*",
+    "dev:next": "next dev",
+    "dev:relay": "yarn relay-watch",
+    "dev:reason": "bsb -make-world -w",
+    "build": "yarn clean && yarn build:reason && yarn build:next",
+    "build:reason": "bsb -make-world",
+    "build:next": "next build",
+    "start": "DISABLE_SERVERLESS=true NODE_ENV=production next start",
+    "now-build": "yarn build",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\"",
+    "lint": "run-p -c lint:*",
+    "lint:css": "stylelint '**/*.css'",
+    "lint:ts": "eslint '**/*.js{,x}' '**/*.ts{,x}'",
+    "typecheck": "tsc --noEmit",
+    "checks": "yarn reason-relay-compiler --validate --quiet && yarn typecheck && yarn lint",
+    "deploy:production": "now --token $NOW_TOKEN --target production",
+    "deploy:staging": "now --token $NOW_TOKEN --target staging",
+    "relay": "reason-relay-compiler",
+    "relay-watch": "reason-relay-compiler --watch",
+    "update-schema": "get-graphql-schema http://localhost:3000/api/graphql > schema.graphql",
+    "update-graphql": "yarn update-schema && yarn relay"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@dblechoc/reason-relay": "0.6.1",
+    "apollo-server-micro": "2.9.15",
+    "bs-fetch": "0.5.0",
+    "bs-platform": "7.0.1",
+    "graphql": "14.5.8",
+    "isomorphic-fetch": "2.2.1",
+    "next": "9.1.6",
+    "nextdotbs": "0.1.3",
+    "re-classnames": "4.1.0",
+    "react": "0.0.0-experimental-f6b8d31a7",
+    "react-dom": "0.0.0-experimental-f6b8d31a7",
+    "react-relay": "0.0.0-experimental-5f1cb628",
+    "reason-react": "0.7.0",
+    "relay-runtime": "8.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.7.7",
+    "@babel/plugin-proposal-class-properties": "7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "7.7.5",
+    "@fullhuman/postcss-purgecss": "1.3.0",
+    "@types/isomorphic-fetch": "0.0.35",
+    "@types/node": "12.12.21",
+    "@types/react": "16.9.17",
+    "@types/react-relay": "7.0.3",
+    "@types/relay-runtime": "8.0.0",
+    "@typescript-eslint/eslint-plugin": "2.13.0",
+    "@typescript-eslint/parser": "2.13.0",
+    "@zeit/next-css": "1.0.1",
+    "autoprefixer": "9.7.3",
+    "babel-loader": "8.0.6",
+    "babel-plugin-relay": "8.0.0",
+    "bs-sedlex": "20.0.0",
+    "bs-uchar": "2.1.0",
+    "cssnano": "4.1.10",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-react": "7.17.0",
+    "get-graphql-schema": "2.1.2",
+    "husky": "3.1.0",
+    "lint-staged": "9.5.0",
+    "next-offline": "4.0.6",
+    "next-transpile-modules": "2.3.1",
+    "now": "16.7.0",
+    "npm-run-all": "4.1.5",
+    "postcss-easy-import": "3.0.0",
+    "prettier": "1.19.1",
+    "relay-compiler": "8.0.0",
+    "relay-config": "8.0.0",
+    "rimraf": "3.0.0",
+    "stylelint": "12.0.1",
+    "stylelint-config-recommended": "3.0.0",
+    "stylelint-config-standard": "19.0.0",
+    "tailwindcss": "1.1.4",
+    "typescript": "3.7.4",
+    "webpack": "4.41.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,css,md,html}": [
+      "yarn format",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn lint",
+      "post-commit": "git update-index -g"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "name": "pollen-tracker",
+  "alias": "pollen-tracker.now.sh",
+  "public": false,
+  "regions": ["all"],
+  "builds": [
+    { "src": "/public/static/*", "use": "@now/static" },
+    { "src": "next.config.js", "use": "@now/next" }
+  ],
+  "routes": [
+    { "src": "/static/(.*)", "dest": "/public/static/$1" },
+    {
+      "src": "/service-worker.js$",
+      "dest": "/_next/static/service-worker.js",
+      "headers": {
+        "cache-control": "public, max-age=43200, immutable",
+        "Service-Worker-Allowed": "/"
+      }
+    },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
