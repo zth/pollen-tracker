@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "pollen-tracker",
-  "alias": "pollen-tracker.now.sh",
   "public": false,
   "regions": ["all"],
   "builds": [
