@@ -11,7 +11,7 @@ let createFetchQuery =
     fetchWithInit(
       baseUrl->Belt.Option.getWithDefault("") ++ "/api/graphql",
       Fetch.RequestInit.make(
-        ~method_=Post,
+        ~method=Post,
         ~body=
           Js.Dict.fromList([
             ("query", Js.Json.string(operation.text)),
