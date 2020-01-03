@@ -74,7 +74,7 @@
     "lint-staged": "9.5.0",
     "next-offline": "4.0.6",
     "next-transpile-modules": "2.3.1",
-    "now": "16.7.0",
+    "now": "16.7.1",
     "npm-run-all": "4.1.5",
     "postcss-easy-import": "3.0.0",
     "prettier": "1.19.1",
