@@ -8,9 +8,9 @@ import * as RelayEnv from "../utils/RelayEnv.bs.js";
 import * as IndexRoot from "../components/IndexRoot.bs.js";
 import * as Belt_Option from "bs-platform/lib/es6/belt_Option.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
-import * as ReasonRelay from "@dblechoc/reason-relay/src/ReasonRelay.bs.js";
+import * as ReasonRelay from "reason-relay/src/ReasonRelay.bs.js";
 import * as EmptyContent from "../components/EmptyContent.bs.js";
-import * as ReactExperimental from "@dblechoc/reason-relay/src/ReactExperimental.bs.js";
+import * as ReactExperimental from "reason-relay/src/ReactExperimental.bs.js";
 
 function Index(Props) {
   var token = Props.token;
@@ -35,10 +35,9 @@ function fetcher(param) {
   var environment = RelayEnv.initEnvironment(baseUrl, undefined);
   var token = Js_dict.get(param.query, "token");
   return Belt_Option.getWithDefault(Belt_Option.map(token, (function (token) {
-                    var variables = {
-                      token: token
-                    };
-                    return Curry._2(IndexRoot.Query.$$fetch, environment, variables).then((function (param) {
+                    return Curry._2(IndexRoot.Query.$$fetch, environment, {
+                                    token: token
+                                  }).then((function (param) {
                                     var queryRecords = ReasonRelay.RecordSource.toJSON(ReasonRelay.Store.getSource(ReasonRelay.Environment.getStore(environment)));
                                     return Promise.resolve({
                                                 token: token,

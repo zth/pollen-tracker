@@ -29,10 +29,8 @@ let fetcher: propsFetcher(props) =
 
     token
     ->Belt.Option.map(token => {
-        let variables = {"token": token};
-
         Js.Promise.(
-          IndexRoot.Query.fetch(~environment, ~variables)
+          IndexRoot.Query.fetch(~environment, ~variables={token: token})
           |> then_(_ => {
                let queryRecords =
                  ReasonRelay.(
@@ -51,7 +49,7 @@ let fetcher: propsFetcher(props) =
                Js.log2("ssr fetch error: ", error);
                resolve({token: Some(token), queryRecords: None});
              })
-        );
+        )
       })
     ->Belt.Option.getWithDefault(
         Js.Promise.resolve({token: None, queryRecords: None}),

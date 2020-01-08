@@ -1,24 +1,75 @@
-type response = {
-  .
-  "vendorFollowUp":
-    Js.Nullable.t({
-      .
-      "__$fragment_ref__IndexRoot_AddressEntry_vendorFollowUp": IndexRoot_AddressEntry_vendorFollowUp_graphql.t,
-      "agent": {
-        .
-        "__$fragment_ref__Navigation_agent": Navigation_agent_graphql.t,
-      },
-      "id": string,
-    }),
-};
-type refetchVariables = {. "token": option(string)};
-let makeRefetchVariables = (~token=?, ()): refetchVariables => {
-  "token": token,
-};
-type variables = {. "token": string};
-type operationType = ReasonRelay.queryNode;
+/* @generated */
 
 module Unions = {};
+
+module Types = {
+  type agent;
+  type vendorFollowUp = {
+    id: string,
+    agent,
+    __wrappedFragment__IndexRoot_AddressEntry_vendorFollowUp: ReasonRelay.wrappedFragmentRef,
+  };
+};
+
+open Types;
+
+type response = {vendorFollowUp: option(vendorFollowUp)};
+type refetchVariables = {token: option(string)};
+let makeRefetchVariables = (~token=?, ()): refetchVariables => {
+  token: token,
+};
+type variables = {token: string};
+
+module FragmentConverters: {
+  let unwrapFragment_agent:
+    agent =>
+    {. "__$fragment_ref__Navigation_agent": Navigation_agent_graphql.t};
+  let unwrapFragment_vendorFollowUp:
+    vendorFollowUp =>
+    {
+      .
+      "__$fragment_ref__IndexRoot_AddressEntry_vendorFollowUp": IndexRoot_AddressEntry_vendorFollowUp_graphql.t,
+    };
+} = {
+  external unwrapFragment_vendorFollowUp:
+    vendorFollowUp =>
+    {
+      .
+      "__$fragment_ref__IndexRoot_AddressEntry_vendorFollowUp": IndexRoot_AddressEntry_vendorFollowUp_graphql.t,
+    } =
+    "%identity";
+  external unwrapFragment_agent:
+    agent =>
+    {. "__$fragment_ref__Navigation_agent": Navigation_agent_graphql.t} =
+    "%identity";
+};
+
+module Internal = {
+  type responseRaw;
+  let responseConverter: Js.Dict.t(array((int, string))) = [%raw
+    {| {"vendorFollowUp":[[0,""]]} |}
+  ];
+  let responseConverterMap = ();
+  let convertResponse = v =>
+    v
+    ->ReasonRelay._convertObj(
+        responseConverter,
+        responseConverterMap,
+        Js.undefined,
+      );
+
+  let variablesConverter: Js.Dict.t(array((int, string))) = [%raw {| {} |}];
+  let variablesConverterMap = ();
+  let convertVariables = v =>
+    v
+    ->ReasonRelay._convertObj(
+        variablesConverter,
+        variablesConverterMap,
+        Js.undefined,
+      );
+};
+
+type operationType = ReasonRelay.queryNode;
 
 let node: operationType = [%bs.raw
   {| (function(){
