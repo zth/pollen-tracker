@@ -4,13 +4,16 @@ import * as Curry from "bs-platform/lib/es6/curry.js";
 import * as React from "react";
 import * as Layout from "./Layout.bs.js";
 import * as Navigation from "./Navigation.bs.js";
-import * as ReasonRelay from "@dblechoc/reason-relay/src/ReasonRelay.bs.js";
+import * as ReasonRelay from "reason-relay/src/ReasonRelay.bs.js";
 import * as EmptyContent from "./EmptyContent.bs.js";
 import * as IndexRootVendorFollowUpQuery_graphql from "../__generated__/IndexRootVendorFollowUpQuery_graphql.bs.js";
 import * as IndexRoot_AddressEntry_vendorFollowUp_graphql from "../__generated__/IndexRoot_AddressEntry_vendorFollowUp_graphql.bs.js";
 
+var convertFragment = IndexRoot_AddressEntry_vendorFollowUp_graphql.Internal.convertFragment;
+
 var UseFragment = ReasonRelay.MakeUseFragment({
-      fragmentSpec: IndexRoot_AddressEntry_vendorFollowUp_graphql.node
+      fragmentSpec: IndexRoot_AddressEntry_vendorFollowUp_graphql.node,
+      convertFragment: convertFragment
     });
 
 function use(fRef) {
@@ -19,6 +22,7 @@ function use(fRef) {
 
 var Fragment = {
   Operation: /* alias */0,
+  Types: /* alias */0,
   UseFragment: UseFragment,
   use: use
 };
@@ -53,8 +57,18 @@ var AddressEntry = {
   make: IndexRoot$AddressEntry
 };
 
+var unwrapFragment_agent = IndexRootVendorFollowUpQuery_graphql.FragmentConverters.unwrapFragment_agent;
+
+var unwrapFragment_vendorFollowUp = IndexRootVendorFollowUpQuery_graphql.FragmentConverters.unwrapFragment_vendorFollowUp;
+
+var convertResponse = IndexRootVendorFollowUpQuery_graphql.Internal.convertResponse;
+
+var convertVariables = IndexRootVendorFollowUpQuery_graphql.Internal.convertVariables;
+
 var UseQuery = ReasonRelay.MakeUseQuery({
-      query: IndexRootVendorFollowUpQuery_graphql.node
+      query: IndexRootVendorFollowUpQuery_graphql.node,
+      convertResponse: convertResponse,
+      convertVariables: convertVariables
     });
 
 var use$1 = UseQuery.use;
@@ -67,6 +81,9 @@ var Query_usePreloaded = UseQuery.usePreloaded;
 
 var Query = {
   Operation: /* alias */0,
+  unwrapFragment_agent: unwrapFragment_agent,
+  unwrapFragment_vendorFollowUp: unwrapFragment_vendorFollowUp,
+  Types: /* alias */0,
   UseQuery: UseQuery,
   use: use$1,
   $$fetch: Query_fetch,
@@ -80,19 +97,20 @@ function IndexRoot(Props) {
         token: token
       }, undefined, undefined, undefined, /* () */0);
   var match = queryData.vendorFollowUp;
-  if (match == null) {
-    return React.createElement(EmptyContent.make, {
-                emptyText: "Followup not found !"
-              });
-  } else {
+  if (match !== undefined) {
+    var vendorFollowUp = match;
     return React.createElement(Layout.make, {
                 children: React.createElement("div", {
                       className: "h-screen flex flex-col"
                     }, React.createElement(Navigation.make, {
-                          agentRef: match.agent
+                          agentRef: Curry._1(unwrapFragment_agent, vendorFollowUp.agent)
                         }), React.createElement(IndexRoot$AddressEntry, {
-                          vendorFollowUpRef: match
+                          vendorFollowUpRef: Curry._1(unwrapFragment_vendorFollowUp, vendorFollowUp)
                         }))
+              });
+  } else {
+    return React.createElement(EmptyContent.make, {
+                emptyText: "Followup not found !"
               });
   }
 }

@@ -9,7 +9,7 @@
   "bs-dependencies": [
     "reason-react",
     "re-classnames",
-    "@dblechoc/reason-relay",
+    "reason-relay",
     "nextdotbs",
     "bs-fetch"
   ],
@@ -20,10 +20,9 @@
   },
   "suffix": ".bs.js",
   "bsc-flags": ["-bs-super-errors"],
-  "ppx-flags": ["@dblechoc/reason-relay/ppx"],
+  "ppx-flags": ["reason-relay/ppx"],
   "refmt": 3,
   "warnings": {
-    "number": "+A-48-102",
-    "error": "+A-3-44-102"
+    "error": "+101"
   }
 }

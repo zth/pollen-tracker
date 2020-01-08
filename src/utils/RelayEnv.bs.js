@@ -4,7 +4,7 @@ import * as Fetch from "bs-fetch/src/Fetch.js";
 import * as Js_dict from "bs-platform/lib/es6/js_dict.js";
 import * as Belt_Option from "bs-platform/lib/es6/belt_Option.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
-import * as ReasonRelay from "@dblechoc/reason-relay/src/ReasonRelay.bs.js";
+import * as ReasonRelay from "reason-relay/src/ReasonRelay.bs.js";
 import * as Caml_exceptions from "bs-platform/lib/es6/caml_exceptions.js";
 
 require('isomorphic-fetch')

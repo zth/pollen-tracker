@@ -2,11 +2,14 @@
 
 import * as Curry from "bs-platform/lib/es6/curry.js";
 import * as React from "react";
-import * as ReasonRelay from "@dblechoc/reason-relay/src/ReasonRelay.bs.js";
+import * as ReasonRelay from "reason-relay/src/ReasonRelay.bs.js";
 import * as Navigation_agent_graphql from "../__generated__/Navigation_agent_graphql.bs.js";
 
+var convertFragment = Navigation_agent_graphql.Internal.convertFragment;
+
 var UseFragment = ReasonRelay.MakeUseFragment({
-      fragmentSpec: Navigation_agent_graphql.node
+      fragmentSpec: Navigation_agent_graphql.node,
+      convertFragment: convertFragment
     });
 
 function use(fRef) {
@@ -15,6 +18,7 @@ function use(fRef) {
 
 var AgentFragment = {
   Operation: /* alias */0,
+  Types: /* alias */0,
   UseFragment: UseFragment,
   use: use
 };

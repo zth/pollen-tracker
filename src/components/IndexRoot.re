@@ -19,7 +19,7 @@ module AddressEntry = {
     let vendorFollowUp = Fragment.use(vendorFollowUpRef);
 
     let (contactAddress, setContactAddress) =
-      React.useState(() => vendorFollowUp##contact##address);
+      React.useState(() => vendorFollowUp.contact.address);
 
     <div className="m-auto max-w-sm">
       <div className="mx-3">
@@ -61,14 +61,20 @@ module Query = [%relay.query
 
 [@react.component]
 let make = (~token) => {
-  let queryData = Query.use(~variables={"token": token}, ());
+  let queryData = Query.use(~variables={token: token}, ());
 
-  switch (queryData##vendorFollowUp |> Js.Nullable.toOption) {
+  switch (queryData.vendorFollowUp) {
   | Some(vendorFollowUp) =>
     <Layout>
       <div className="h-screen flex flex-col">
-        <Navigation agentRef={vendorFollowUp##agent} />
-        <AddressEntry vendorFollowUpRef=vendorFollowUp />
+        <Navigation
+          agentRef={vendorFollowUp.agent->Query.unwrapFragment_agent}
+        />
+        <AddressEntry
+          vendorFollowUpRef={
+            vendorFollowUp->Query.unwrapFragment_vendorFollowUp
+          }
+        />
       </div>
     </Layout>
   | None => <EmptyContent emptyText="Followup not found !" />

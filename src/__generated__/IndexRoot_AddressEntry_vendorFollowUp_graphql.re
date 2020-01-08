@@ -1,22 +1,45 @@
+/* @generated */
+
+module Unions = {};
+
+module Types = {
+  type contact = {
+    firstName: string,
+    address: string,
+  };
+  type agent = {brandingColor: string};
+};
+
+open Types;
+
+type fragment = {
+  id: string,
+  agent,
+  contact,
+};
+
+module FragmentConverters: {} = {};
+
+module Internal = {
+  type fragmentRaw;
+  let fragmentConverter: Js.Dict.t(array((int, string))) = [%raw {| {} |}];
+  let fragmentConverterMap = ();
+  let convertFragment = v =>
+    v
+    ->ReasonRelay._convertObj(
+        fragmentConverter,
+        fragmentConverterMap,
+        Js.undefined,
+      );
+};
+
 type t;
 type fragmentRef;
 type fragmentRefSelector('a) =
   {.. "__$fragment_ref__IndexRoot_AddressEntry_vendorFollowUp": t} as 'a;
 external getFragmentRef: fragmentRefSelector('a) => fragmentRef = "%identity";
 
-type fragment = {
-  .
-  "contact": {
-    .
-    "address": string,
-    "firstName": string,
-  },
-  "agent": {. "brandingColor": string},
-  "id": string,
-};
 type operationType = ReasonRelay.fragmentNode;
-
-module Unions = {};
 
 let node: operationType = [%bs.raw
   {| {
