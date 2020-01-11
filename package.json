@@ -6,7 +6,6 @@
     "node": "12.x"
   },
   "scripts": {
-    "postinstall": "cd ./node_modules/bs-uchar && yarn && yarn clean && yarn prepare",
     "clean": "rimraf .next && bsb -clean-world",
     "dev": "run-p dev:*",
     "dev:next": "next dev",
