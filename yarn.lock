@@ -1499,10 +1499,15 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/relay-runtime@*", "@types/relay-runtime@8.0.0":
+"@types/relay-runtime@*":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-8.0.0.tgz#49ee330be9367dfc61e52b91461f64137dbff207"
   integrity sha512-FDHMdHCRI6nL5M40/gU3mG0e0c4Szx4NOupguIPhPA0ZbtMGZO2RLteT5q3jtHaCrtk1qDmlE7KoTmbNj+RljA==
+
+"@types/relay-runtime@8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-8.0.1.tgz#0c4f675de7936aa087fdfd850fb22991af7bb1c1"
+  integrity sha512-1CtxLU8iDXA6E0nMHL2pwW63qEL8zYTO5qv6eUnQvYIbL80GWxhYfeluort3LIkKkSctiOUy06ysxPgrENoWdQ==
 
 "@types/serve-static@*":
   version "1.13.3"
