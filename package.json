@@ -53,7 +53,7 @@
     "@fullhuman/postcss-purgecss": "2.0.5",
     "@types/isomorphic-fetch": "0.0.35",
     "@types/node": "12.12.21",
-    "@types/react": "16.9.17",
+    "@types/react": "16.9.18",
     "@types/react-relay": "7.0.3",
     "@types/relay-runtime": "8.0.1",
     "@typescript-eslint/eslint-plugin": "2.17.0",
