@@ -81,6 +81,14 @@ const config = {
   ],
   experimental: {
     reactMode: 'concurrent',
+    rewrites() {
+      return [
+        {
+          source: '/token/:token',
+          destination: '/',
+        },
+      ];
+    },
   },
 };
 
