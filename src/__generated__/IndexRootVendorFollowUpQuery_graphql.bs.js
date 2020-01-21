@@ -12,20 +12,7 @@ function makeRefetchVariables(token, param) {
         };
 }
 
-function FragmentConverters_unwrapFragment_agent(prim) {
-  return prim;
-}
-
-function FragmentConverters_unwrapFragment_vendorFollowUp(prim) {
-  return prim;
-}
-
-var FragmentConverters = {
-  unwrapFragment_agent: FragmentConverters_unwrapFragment_agent,
-  unwrapFragment_vendorFollowUp: FragmentConverters_unwrapFragment_vendorFollowUp
-};
-
-var responseConverter = ( {"vendorFollowUp":[[0,""]]} );
+var responseConverter = ( {"vendorFollowUp":{"n":"","f":""},"vendorFollowUp_agent":{"f":""}} );
 
 function convertResponse(v) {
   return ReasonRelay._convertObj(v, responseConverter, /* () */0, undefined);
@@ -45,6 +32,8 @@ var Internal = {
   variablesConverterMap: /* () */0,
   convertVariables: convertVariables
 };
+
+var Utils = { };
 
 var node = ( (function(){
 var v0 = [
@@ -198,8 +187,8 @@ export {
   Unions ,
   Types ,
   makeRefetchVariables ,
-  FragmentConverters ,
   Internal ,
+  Utils ,
   node ,
   
 }

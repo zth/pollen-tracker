@@ -10,11 +10,9 @@ type fragment = {
   logoUrl: string,
 };
 
-module FragmentConverters: {} = {};
-
 module Internal = {
   type fragmentRaw;
-  let fragmentConverter: Js.Dict.t(array((int, string))) = [%raw {| {} |}];
+  let fragmentConverter: Js.Dict.t(Js.Dict.t(string)) = [%raw {| {} |}];
   let fragmentConverterMap = ();
   let convertFragment = v =>
     v
@@ -30,6 +28,8 @@ type fragmentRef;
 type fragmentRefSelector('a) =
   {.. "__$fragment_ref__Navigation_agent": t} as 'a;
 external getFragmentRef: fragmentRefSelector('a) => fragmentRef = "%identity";
+
+module Utils = {};
 
 type operationType = ReasonRelay.fragmentNode;
 

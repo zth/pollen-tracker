@@ -67,14 +67,8 @@ let make = (~token) => {
   | Some(vendorFollowUp) =>
     <Layout>
       <div className="h-screen flex flex-col">
-        <Navigation
-          agentRef={vendorFollowUp.agent->Query.unwrapFragment_agent}
-        />
-        <AddressEntry
-          vendorFollowUpRef={
-            vendorFollowUp->Query.unwrapFragment_vendorFollowUp
-          }
-        />
+        <Navigation agentRef={vendorFollowUp.agent.getFragmentRefs()} />
+        <AddressEntry vendorFollowUpRef={vendorFollowUp.getFragmentRefs()} />
       </div>
     </Layout>
   | None => <EmptyContent emptyText="Followup not found !" />

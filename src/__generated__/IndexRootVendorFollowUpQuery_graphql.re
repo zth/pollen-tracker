@@ -3,11 +3,20 @@
 module Unions = {};
 
 module Types = {
-  type agent;
+  type agent = {
+    getFragmentRefs:
+      unit =>
+      {. "__$fragment_ref__Navigation_agent": Navigation_agent_graphql.t},
+  };
   type vendorFollowUp = {
     id: string,
     agent,
-    __wrappedFragment__IndexRoot_AddressEntry_vendorFollowUp: ReasonRelay.wrappedFragmentRef,
+    getFragmentRefs:
+      unit =>
+      {
+        .
+        "__$fragment_ref__IndexRoot_AddressEntry_vendorFollowUp": IndexRoot_AddressEntry_vendorFollowUp_graphql.t,
+      },
   };
 };
 
@@ -20,34 +29,10 @@ let makeRefetchVariables = (~token=?, ()): refetchVariables => {
 };
 type variables = {token: string};
 
-module FragmentConverters: {
-  let unwrapFragment_agent:
-    agent =>
-    {. "__$fragment_ref__Navigation_agent": Navigation_agent_graphql.t};
-  let unwrapFragment_vendorFollowUp:
-    vendorFollowUp =>
-    {
-      .
-      "__$fragment_ref__IndexRoot_AddressEntry_vendorFollowUp": IndexRoot_AddressEntry_vendorFollowUp_graphql.t,
-    };
-} = {
-  external unwrapFragment_vendorFollowUp:
-    vendorFollowUp =>
-    {
-      .
-      "__$fragment_ref__IndexRoot_AddressEntry_vendorFollowUp": IndexRoot_AddressEntry_vendorFollowUp_graphql.t,
-    } =
-    "%identity";
-  external unwrapFragment_agent:
-    agent =>
-    {. "__$fragment_ref__Navigation_agent": Navigation_agent_graphql.t} =
-    "%identity";
-};
-
 module Internal = {
   type responseRaw;
-  let responseConverter: Js.Dict.t(array((int, string))) = [%raw
-    {| {"vendorFollowUp":[[0,""]]} |}
+  let responseConverter: Js.Dict.t(Js.Dict.t(string)) = [%raw
+    {| {"vendorFollowUp":{"n":"","f":""},"vendorFollowUp_agent":{"f":""}} |}
   ];
   let responseConverterMap = ();
   let convertResponse = v =>
@@ -58,7 +43,7 @@ module Internal = {
         Js.undefined,
       );
 
-  let variablesConverter: Js.Dict.t(array((int, string))) = [%raw {| {} |}];
+  let variablesConverter: Js.Dict.t(Js.Dict.t(string)) = [%raw {| {} |}];
   let variablesConverterMap = ();
   let convertVariables = v =>
     v
@@ -68,6 +53,8 @@ module Internal = {
         Js.undefined,
       );
 };
+
+module Utils = {};
 
 type operationType = ReasonRelay.queryNode;
 

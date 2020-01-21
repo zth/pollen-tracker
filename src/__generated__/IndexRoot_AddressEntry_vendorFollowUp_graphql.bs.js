@@ -6,8 +6,6 @@ var Unions = { };
 
 var Types = { };
 
-var FragmentConverters = { };
-
 var fragmentConverter = ( {} );
 
 function convertFragment(v) {
@@ -19,6 +17,8 @@ var Internal = {
   fragmentConverterMap: /* () */0,
   convertFragment: convertFragment
 };
+
+var Utils = { };
 
 var node = ( {
   "kind": "Fragment",
@@ -83,8 +83,8 @@ var node = ( {
 export {
   Unions ,
   Types ,
-  FragmentConverters ,
   Internal ,
+  Utils ,
   node ,
   
 }

@@ -8,6 +8,8 @@ module Enum_CacheControlScope: {
   type wrapped;
   let unwrap: wrapped => t;
   let wrap: t => wrapped;
+  let toString: t => string;
+  let fromString: string => t;
 } = {
   type t = [ | `PUBLIC | `PRIVATE | `FUTURE_ADDED_VALUE__];
   type wrapped;
@@ -31,4 +33,7 @@ module Enum_CacheControlScope: {
       }
     )
     |> __wrap;
+
+  let toString = t => t |> wrap |> __unwrap;
+  let fromString = str => str |> __wrap |> unwrap;
 };

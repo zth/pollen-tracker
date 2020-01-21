@@ -24,9 +24,15 @@ function wrap(t) {
   }
 }
 
+var toString = wrap;
+
+var fromString = unwrap;
+
 var Enum_CacheControlScope = {
   unwrap: unwrap,
-  wrap: wrap
+  wrap: wrap,
+  toString: toString,
+  fromString: fromString
 };
 
 export {

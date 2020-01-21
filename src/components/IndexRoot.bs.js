@@ -57,10 +57,6 @@ var AddressEntry = {
   make: IndexRoot$AddressEntry
 };
 
-var unwrapFragment_agent = IndexRootVendorFollowUpQuery_graphql.FragmentConverters.unwrapFragment_agent;
-
-var unwrapFragment_vendorFollowUp = IndexRootVendorFollowUpQuery_graphql.FragmentConverters.unwrapFragment_vendorFollowUp;
-
 var convertResponse = IndexRootVendorFollowUpQuery_graphql.Internal.convertResponse;
 
 var convertVariables = IndexRootVendorFollowUpQuery_graphql.Internal.convertVariables;
@@ -81,8 +77,6 @@ var Query_usePreloaded = UseQuery.usePreloaded;
 
 var Query = {
   Operation: /* alias */0,
-  unwrapFragment_agent: unwrapFragment_agent,
-  unwrapFragment_vendorFollowUp: unwrapFragment_vendorFollowUp,
   Types: /* alias */0,
   UseQuery: UseQuery,
   use: use$1,
@@ -103,9 +97,9 @@ function IndexRoot(Props) {
                 children: React.createElement("div", {
                       className: "h-screen flex flex-col"
                     }, React.createElement(Navigation.make, {
-                          agentRef: Curry._1(unwrapFragment_agent, vendorFollowUp.agent)
+                          agentRef: Curry._1(vendorFollowUp.agent.getFragmentRefs, /* () */0)
                         }), React.createElement(IndexRoot$AddressEntry, {
-                          vendorFollowUpRef: Curry._1(unwrapFragment_vendorFollowUp, vendorFollowUp)
+                          vendorFollowUpRef: Curry._1(vendorFollowUp.getFragmentRefs, /* () */0)
                         }))
               });
   } else {
